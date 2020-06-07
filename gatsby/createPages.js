@@ -43,7 +43,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
   /**
    * This is the method from Gatsby that we're going
-   * to use to create pages in our static site.
+   * to use to gatsby pages in our static site.
    */
   const { createPage } = actions
   /**
@@ -92,7 +92,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
       /**
        * Once we're done, return all the pages
-       * so we can create the necessary pages with
+       * so we can gatsby the necessary pages with
        * all the data on hand.
        */
       return allPages
@@ -100,7 +100,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
   /**
    * Kick off our `fetchPages` method which will get us all
-   * the pages we need to create individual pages.
+   * the pages we need to gatsby individual pages.
    */
   await fetchPages({ first: itemsPerPage, after: null }).then((wpPages) => {
 

@@ -1,5 +1,8 @@
 const Globals = {
-  blogURI: 'blog'
+  blogURI: 'blog',
+  authorURI: 'author',
+  categoryURI: 'category',
+  tagsURI: 'tag',
 }
 
 module.exports = Globals
