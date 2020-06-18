@@ -15,8 +15,8 @@ const Listing = ({ data, type = [] }) => {
     })
   }
   const { uri, title, featuredImage, excerpt, author, categories, tags, date } = data
-  console.log("---->", data)
-  console.log("---->", type)
+  //console.log("---->", data)
+  //console.log("---->", type)
   const withAuthor = type.indexOf("withAuthor") > -1
   const withDesc = type.indexOf("withDesc") > -1 || true
   const withTags = type.indexOf("withTags") > -1 || true
