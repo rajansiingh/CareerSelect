@@ -1,3 +1,86 @@
+#gatsby-focus-wrapper {
+  position: relative;
+  height: 100vh;
+}
+.child-container {
+  min-height: calc(100vh - 52px);
+  padding: 150px 0 10px;
+}
+.page-footer {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 0.875rem;
+  padding: 1rem 2.5rem;
+  background: rebeccapurple;
+}
+.navigation {
+  background: rgb(247, 247, 247);
+}
+.navigation a {
+  padding: 10px;
+  display: inline-block;
+}
+.navigation a:hover {
+  color: rgb(0, 0, 0);
+  background: rgb(205, 205, 205);
+}
+
+.wp-block-image img {
+  width: 100%;
+}
+@media (max-width: 640px) {
+  #nav-toggle {
+    position: absolute;
+    top: 30px;
+    right: 4%;
+  }
+  #nav-toggle { cursor: pointer; padding: 10px 35px 16px 0px; }
+  #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 5px;
+    width: 35px;
+    background: white;
+    position: absolute;
+    display: block;
+    content: '';
+  }
+  #nav-toggle span:before {
+    top: -10px;
+  }
+  #nav-toggle span:after {
+    bottom: -10px;
+  }
+
+  #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+    transition: all 500ms ease-in-out;
+  }
+  #nav-toggle.active span {
+    background-color: transparent;
+  }
+  #nav-toggle.active span:before, #nav-toggle.active span:after {
+    top: 0;
+  }
+  #nav-toggle.active span:before {
+    transform: rotate(45deg);
+  }
+  #nav-toggle.active span:after {
+    transform: rotate(-45deg);
+  }
+  .child-container {
+    padding-top: 120px;
+  }
+
+  .navigation {
+    display: none;
+  }
+  .navigation a {
+    display: block;
+  }
+  .navigation.active {
+    display: block;
+  }
+}
 /*html {*/
 /*  font-family: sans-serif;*/
 /*  -ms-text-size-adjust: 100%;*/
@@ -693,8 +776,8 @@ dfn {
   font-style: italic;
 }
 h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
+  font-size: 1.5em;
+  /*margin: 0.67em 0;*/
 }
 mark {
   background: #ff0;

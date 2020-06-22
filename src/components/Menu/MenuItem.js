@@ -4,8 +4,7 @@ import UniversalLink from "../Link/UniversalLink"
 
 const MenuItem = ({ menuItem, wordPressUrl }) => {
   return (
-    <UniversalLink style={{ marginRight: "20px" }}
-                   to={CreateLocalLink(menuItem, wordPressUrl)}>
+    <UniversalLink to={CreateLocalLink(menuItem, wordPressUrl)}>
       {menuItem.label}
     </UniversalLink>
   )

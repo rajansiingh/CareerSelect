@@ -13,9 +13,7 @@ const Post = ({ pageContext }) => {
   return (
     <Layout>
       <SEO title={title}/>
-
       <FluidImage image={featuredImage} style={{ marginBottom: "15px" }}/>
-
       <h1> {title} </h1>
       <div dangerouslySetInnerHTML={{ __html: content }}/>
     </Layout>
