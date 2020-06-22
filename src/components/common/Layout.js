@@ -8,10 +8,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
 import Header from "./Header"
+import "./Layout.scss"
+import Menu from "../Menu/Menu";
 import Footer from "./Footer"
-import "../layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title}/>
-
+      <Menu/>
       <div className='container child-container'>
         <main>{children}</main>
       </div>
