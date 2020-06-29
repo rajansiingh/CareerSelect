@@ -40,12 +40,14 @@ const Menu = () => {
 
           return (
             <div className='navigation'>
+              <div className='container'>
               {
                 menuItems &&
                 menuItems.map((menuItem) => (
                   <MenuItem key={menuItem.id} menuItem={menuItem} wordPressUrl={wordPressUrl}/>
                 ))
               }
+              </div>
             </div>
           )
         }

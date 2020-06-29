@@ -14,7 +14,7 @@ const Blog = ({ pageContext }) => {
         description="Authors posts"
         keywords={[`author`]}
       />
-      {nodes && nodes.map(post => <Listing key={post.postId} data={post} type={["withAuthor", "withDesc"]}/>)}
+      <div className='listing-page row'>{nodes && nodes.map(post => <Listing key={post.postId} data={post} type={["withAuthor", "withDesc"]}/>)}</div>
       <Pagination
         pageNumber={pageNumber}
         hasNextPage={hasNextPage}

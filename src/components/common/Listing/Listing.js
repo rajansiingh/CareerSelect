@@ -48,9 +48,9 @@ const Listing = ({ data, type = [] }) => {
   </div>;
 
   return (
-    <div className='listing-page row'>
+    <React.Fragment>
       {List}
-    </div>
+    </React.Fragment>
   )
 }
 
