@@ -1,36 +1,65 @@
-const pageTemplate = require.resolve("../src/templates/page/index.js")
+const { log } = require('./utils');
 
+const { PageTemplateFragment } = require('../src/templates/page/data.js');
 const {FluidImageFragment} = require("../src/templates/fragments")
-const {PageTemplateFragment} = require("../src/templates/page/data")
+const pageTemplate = require.resolve('../src/templates/page/index.js');
+// const homeTemplate = require.resolve('../src/templates/home/index.js');
+// const aboutTemplate = require.resolve('../src/templates/about/index.js');
+// const contactTemplate = require.resolve('../src/templates/contact/index.js');
 
 const GET_PAGES = `
-    ${FluidImageFragment}
-    ${PageTemplateFragment}
-    
-    query GET_PAGES($first:Int $after:String) {
-        wpgraphql {
-            pages(
-                first: $first
-                after: $after
-                # This will make sure to only get the parent nodes and no children
-                where: {
-                    parent: null
-                }
-            ) {
-                pageInfo {
-                    hasNextPage
-                    endCursor
-                }
-                nodes {                
-                  ...PageTemplateFragment
-                }
-            }
-        }
-    }
-`
+  # Define our query variables
+  query GET_PAGES($first:Int $after:String) {
+    wpgraphql {
+      # Ask for pages
+      pages(
+          # Ask for the first XX number of pages
+          first: $first
 
-const allPages = []
-let pageNumber = 0
+          # A Cursor to where in the dataset our query should start
+          # and get items _after_ that point
+          after:$after
+      ) {
+          # In response, we'll want pageInfo so we know if we need
+          # to fetch more pages or not.
+          pageInfo {
+              # If true, we need to ask for more data.
+              hasNextPage
+
+              # This cursor will be used for the value for $after
+              # if we need to ask for more data
+              endCursor
+          }
+          nodes {
+              uri
+
+              # This is the fragment used for the pages Template
+              ...PageTemplateFragment
+
+          }
+      }
+    }
+  }
+  # Here we make use of the imported fragments which are referenced above
+  ${PageTemplateFragment}
+  ${FluidImageFragment}
+`;
+
+/**
+ * Array to store allpagess. We make paginated requests
+ * to WordPress to get allpagess, and once we have all pages,
+ * then we iterate over them to create pages.
+ *
+ * @type {Array}
+ */
+const allPages = [];
+
+/**
+ * We track the page number so we can output the page number to the console.
+ *
+ * @type {number}
+ */
+let pageNumber = 0;
 const itemsPerPage = 10
 
 /**
@@ -40,12 +69,12 @@ const itemsPerPage = 10
  * @returns {Promise<void>}
  */
 module.exports = async ({ actions, graphql, reporter }, options) => {
-
   /**
    * This is the method from Gatsby that we're going
-   * to use to gatsby pages in our static site.
+   * to use to create pages in our static site.
    */
-  const { createPage } = actions
+  const { createPage } = actions;
+
   /**
    * Fetch pages method. This accepts variables to alter
    * the query. The variable `first` controls how many items to
@@ -92,20 +121,60 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
       /**
        * Once we're done, return all the pages
-       * so we can gatsby the necessary pages with
+       * so we can create the necessary pages with
        * all the data on hand.
        */
-      return allPages
-    })
+      return allPages;
+    });
+  // let pageSlugIndex = 2;
+  // let wantedSlug = false;
+  // const maybeGenerateNewSlug = (slug, allPages) => {
+  //   /**
+  //    * Store page slug for later use.
+  //    */
+  //   if (!wantedSlug) {
+  //     wantedSlug = slug;
+  //   }
+  //
+  //   /**
+  //    * Check to see if there is slug conflict.
+  //    */
+  //   const hasMatch = allPages.filter((page) => slug === page.uri);
+  //
+  //   /**
+  //    * If there is, recusivley call maybeGenerateNewSlug() until there isn't.
+  //    */
+  //   if (hasMatch.length) {
+  //     const newSlug = `${wantedSlug}-${pageSlugIndex}`;
+  //     pageSlugIndex++;
+  //     return maybeGenerateNewSlug(newSlug, allPages);
+  //   }
+  //   return slug;
+  // };
 
   /**
    * Kick off our `fetchPages` method which will get us all
-   * the pages we need to gatsby individual pages.
+   * the pages we need to create individual pages.
    */
-  await fetchPages({ first: itemsPerPage, after: null }).then((wpPages) => {
+  const wpPages = await fetchPages({ first: itemsPerPage, after: null });
 
-    wpPages && wpPages.map((page) => {
+
+  /**
+   * Map over the allPages array to create the
+   * single pages.
+   * We create these if we have a menu from WP or the wpPages option is set to true.
+   */
+
+    wpPages.map((page) => {
       let pagePath = `${page.uri}`
+      /**
+       * If WordPress has a page that matches the blogURI setting,
+       * The blogURI should override the pages.
+       */
+      if (page.uri === options.blogURI.replace('/', '')) {
+        reporter.warn(`Page slug matches your blogURI setting. Page with the slug "${page.uri}" will not be created.`);
+        return;
+      }
 
       /**
        * If the page is the front page, the page path should not be the uri,
@@ -121,11 +190,55 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
         context: {
           page: page,
         },
-      })
+      });
+      log('created page', '#d98900', `${page.uri}`);
+    });
+    log('PAGES TOTAL', '#d98900', `${wpPages.length}`, true);
 
-      reporter.info(`page created: ${page.uri}`)
-    })
 
-    reporter.info(`# -----> PAGES TOTAL: ${wpPages.length}`)
-  })
-}
+  /**
+   * Build publisher starter pages if enabled.
+   */
+  // if (options.starterPages) {
+  //   /**
+  //    * Make sure there are no slug confilcts.
+  //    */
+  //   const aboutPath = options.wpPages ? maybeGenerateNewSlug('about', wpPages) : 'about';
+  //   const contactPath = options.wpPages ? maybeGenerateNewSlug('contact', wpPages) : 'contact';
+  //
+  //   createPage({
+  //     path: `/${aboutPath}`,
+  //     component: aboutTemplate,
+  //     context: {
+  //       publisher: true,
+  //       label: 'About',
+  //     },
+  //   });
+  //   log('created publisher theme page', '#02f56b', 'about');
+  //
+  //   createPage({
+  //     path: `/${contactPath}`,
+  //     component: contactTemplate,
+  //     context: {
+  //       publisher: true,
+  //       label: 'Contact',
+  //     },
+  //   });
+  //   log('created publisher theme page', '#02f56b', 'home');
+  // }
+
+  /**
+   * If the blog isn't on the home page,
+   * create a basic homepage.
+   */
+  // if (options.blogURI.length && options.blogURI !== '/') {
+  //   createPage({
+  //     path: '/',
+  //     component: homeTemplate,
+  //     context: {
+  //       publisher: true,
+  //       label: 'Home',
+  //     },
+  //   });
+  // }
+};

@@ -49,5 +49,11 @@ module.exports = {
         url: `${process.env.WORDPRESS_URL}/graphql`,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-171063877-1",
+      },
+    },
   ],
 }

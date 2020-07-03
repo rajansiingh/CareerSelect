@@ -1,72 +1,62 @@
-const path = require(`path`)
-// const { UserPreviewFragment } = require("../src/templates/user/data.js")
+const { log } = require('./utils');
+const { BlogPreviewFragment } = require('../src/templates/posts/data.js');
 
+const userTemplate = require.resolve('../src/templates/users/index.js');
 
-module.exports = async ({ actions, graphql, reporter }, options) => {
+module.exports = async ({ actions, graphql, reporter },options) => {
   const GET_USERS = `
-  query GET_USERS($first: Int) {
-    wpgraphql { 
-      users(first: $first) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes{
+    query GET_USERS($first: Int) {
+      wpgraphql {
+        users(first: $first) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
             name
-            avatar {
-              url
-            }
+            userId
             slug
             posts {
               nodes {
-                id
-                postId
-                title
-                uri
-                date
-                slug
-                excerpt
+                ...BlogPreviewFragment
               }
             }
+          }
         }
       }
     }
-  }
-  `
-  const { createPage } = actions
-  const allUsers = []
-  const fetchUsers = async variables =>
-    await graphql(GET_USERS, variables).then(({ data }) => {
-      const {
-        wpgraphql: {
-          users: {
-            nodes,
-            pageInfo: { hasNextPage, endCursor },
-          },
+    ${BlogPreviewFragment}
+  `;
+  const { createPage } = actions;
+  const allUsers = [];
+  const fetchUsers = async (variables) => await graphql(GET_USERS, variables).then(({ data }) => {
+    const {
+      wpgraphql: {
+        users: {
+          nodes,
+          pageInfo: { hasNextPage, endCursor },
         },
-      } = data
+      },
+    } = data;
+    nodes.map((user) => {
+      allUsers.push(user);
+    });
+    if (hasNextPage) {
+      return fetchUsers({ first: 100, after: endCursor });
+    }
+    return allUsers;
+  });
 
-      console.log('----->',JSON.stringify(data));
-      nodes.map(user => {
-        allUsers.push(user)
-      })
-      if (hasNextPage) {
-        return fetchUsers({ first: 100, after: endCursor })
-      }
-      return allUsers
-    })
-
-
-  await fetchUsers({ first: 100, after: null }).then(allUsers => {
-    reporter.info(`Users fetched: ${allUsers.length}`)
-    const userTemplate = path.resolve(`./src/templates/user/index.js`)
-    allUsers.map(user => {
-      reporter.info(`create user: ${user.slug}`)
+  await fetchUsers({ first: 100, after: null }).then((allUsers) => {
+    allUsers.map((user) => {
       createPage({
-        path: `/author/${user.slug}`,
+        path: `${options.authorURI}/${user.slug}`,
         component: userTemplate,
         context: user,
-      })
-    })
-  })
-}
+      });
+      log('created users', '#02f56b', `${user.slug}`);
+    });
+    log('USER TOTAL', '#7300d1', `${allUsers.length}`, true);
+  });
+};

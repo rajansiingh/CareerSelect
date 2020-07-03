@@ -8,7 +8,6 @@ const Pagination = ({ pageNumber, hasNextPage }) => {
 
   return (
     <div style={{ margin: "60px auto", textAlign: "center" }}>
-      <h2>Posts navigation</h2>
       <div>
         {
           pageNumber > 1 && (

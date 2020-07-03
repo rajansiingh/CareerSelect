@@ -1,26 +1,39 @@
-const path = require(`path`)
-module.exports = async ({ actions, graphql }) => {
+const { log } = require('./utils')
+const { BlogPreviewFragment } = require('../src/templates/posts/data.js')
+
+const categoryTemplate = require.resolve(
+  '../src/templates/categories/archive.js'
+)
+
+module.exports = async ({ actions, graphql }, options) => {
   const GET_CATEGORIES = `
-  query GET_CATEGORIES($first: Int, $after: String) {
-    wpgraphql {
-      categories(first: $first, after: $after) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          id
-          categoryId
-          slug
+    query GET_CATEGORIES($first: Int) {
+      wpgraphql {
+        categories(first: $first) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
+            name
+            categoryId
+            slug
+            posts {
+              nodes {
+                ...BlogPreviewFragment
+              }
+            }
+          }
         }
       }
     }
-  }
+    ${BlogPreviewFragment}
   `
   const { createPage } = actions
-  const allTags = []
-  const fetchTags = async variables =>
-    await graphql(GET_CATEGORIES, variables).then(({ data }) => {
+  const allCategories = []
+  const fetchCategories = async variables =>
+    graphql(GET_CATEGORIES, variables).then(({ data }) => {
       const {
         wpgraphql: {
           categories: {
@@ -30,24 +43,30 @@ module.exports = async ({ actions, graphql }) => {
         },
       } = data
       nodes.map(category => {
-        allTags.push(category)
+        allCategories.push(category)
       })
       if (hasNextPage) {
-        return fetchTags({ first: 100, after: endCursor })
+        return fetchCategories({ first: 100, after: endCursor })
       }
-      return allTags
+      return allCategories
     })
 
-  await fetchTags({ first: 100, after: null }).then(allTags => {
-    const categoryTemplate = path.resolve(`./src/templates/category.js`)
-
-    allTags.map(category => {
-      console.log(`create category: ${category.slug}`)
-      createPage({
-        path: `/blog/category/${category.slug}`,
-        component: categoryTemplate,
-        context: category,
-      })
+  await fetchCategories({ first: 100, after: null }).then(categories => {
+    categories.map(category => {
+      if (category.slug && category.name) {
+        createPage({
+          path: `${options.categoryURI}/${category.slug}`,
+          component: categoryTemplate,
+          context: {
+            ...category,
+          },
+        })
+        log('created category', '#02f56b', `$${category.slug}`)
+      }
     })
+
+    log('CATEGORY TOTAL', '#d200d9', `${categories.length}`, true)
+
+    return true
   })
 }
