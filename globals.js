@@ -3,7 +3,8 @@ const Globals = {
   authorURI: '/author',
   categoryURI: '/category',
   tagsURI: '/topic',
-  starterPages: false
+  starterPages: false,
+  itemsPerPage: 9
 }
 
 module.exports = Globals

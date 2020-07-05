@@ -6,6 +6,9 @@ import Layout from "../../components/common/Layout"
 // import PostEntryMedia from '../../components/PostEntryMedia'
 // import BelowPost from '../../components/BelowPost'
 import SEO from '../../components/SEO/SEO'
+import UniversalLink from "../../components/Link/UniversalLink"
+import Globals from '../../../globals';
+import * as dayjs from "dayjs"
 
 const syntaxHighlighter = content => {
   if (!content) {
@@ -24,11 +27,18 @@ const syntaxHighlighter = content => {
 }
 
 const Post = ({ pageContext: post }) => {
-  console.log('---->',post);
+  const displayDate = dayjs(post.date).format("MMM D, YYYY h:mm A")
   return (
     <Layout>
       <SEO title={`${post.title}`} />
       <div className="post-wrapper single-post">
+        <h1>
+          {post.title}
+        </h1>
+        <div className={'post-details'}>
+          <UniversalLink to={`${Globals.authorURI}/${post.author.slug}`}>{post.author.name}</UniversalLink> |
+          Updated : {displayDate}
+        </div>
         <div dangerouslySetInnerHTML={{ __html: post.content }}/>
           {/*<PostEntryTitle*/}
           {/*  location="single"*/}

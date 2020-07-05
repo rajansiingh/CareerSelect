@@ -3,8 +3,10 @@ import { Link } from "gatsby"
 import * as dayjs from "dayjs"
 import { blogURI, authorURI, categoryURI, tagsURI } from "../../../../globals"
 import FluidImage from "../../Image/FluidImage"
-
+import parse from 'html-react-parser';
 import s from "./Listing.module.scss"
+import { options } from "../../Link/utils"
+
 
 const Listing = ({ data, type = [] }) => {
 
@@ -35,7 +37,7 @@ const Listing = ({ data, type = [] }) => {
     {withTags && tags && nodeMapper(tags.nodes, tagsURI)}
     <div className='list-desc'>
       {withDate && date && displayDate}
-      {withDesc && excerpt && <div className={s.desc} dangerouslySetInnerHTML={{ __html: excerpt }}/>}
+      {withDesc && excerpt && <div className={s.desc}>{parse(excerpt, options)}</div>}
       {withAuthor && author && <div>
         By:
         <Link to={`${authorURI}/${author.slug}/`}>

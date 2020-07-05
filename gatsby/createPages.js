@@ -60,7 +60,7 @@ const allPages = [];
  * @type {number}
  */
 let pageNumber = 0;
-const itemsPerPage = 10
+const itemsPerPage = 9;
 
 /**
  * This is the export which Gatbsy will use to process.
@@ -116,7 +116,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
       if (hasNextPage) {
         pageNumber++
         reporter.info(`fetch page ${pageNumber} of pages...`)
-        return fetchPages({ first: itemsPerPage, after: endCursor })
+        return fetchPages({ first: options.itemsPerPage || itemsPerPage, after: endCursor })
       }
 
       /**
@@ -156,7 +156,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
    * Kick off our `fetchPages` method which will get us all
    * the pages we need to create individual pages.
    */
-  const wpPages = await fetchPages({ first: itemsPerPage, after: null });
+  const wpPages = await fetchPages({ first: options.itemsPerPage || itemsPerPage, after: null });
 
 
   /**

@@ -95,7 +95,7 @@ let pageNumber = 0;
  *
  * @var  {number}
  */
-const itemsPerPage = 10;
+const itemsPerPage = 9;
 
 /**
  * This is the export which Gatbsy will use to process.
@@ -160,7 +160,7 @@ module.exports = async ({ actions, graphql }, options) => {
         nodes,
         pageNumber: pageNumber + 1,
         hasNextPage,
-        itemsPerPage,
+        itemsPerPage: options.itemsPerPage || itemsPerPage ,
         allPosts,
       },
     };
@@ -179,7 +179,7 @@ module.exports = async ({ actions, graphql }, options) => {
     if (hasNextPage) {
       pageNumber++;
       log('fetch page', '#02f56b', `${pageNumber} of posts...`);
-      return fetchPosts({ first: itemsPerPage, after: endCursor });
+      return fetchPosts({ first: options.itemsPerPage || itemsPerPage, after: endCursor });
     }
 
     /**
@@ -195,7 +195,7 @@ module.exports = async ({ actions, graphql }, options) => {
    * the posts we need to create individual post pages
    * and paginated blogroll archive pages.
    */
-  await fetchPosts({ first: itemsPerPage, after: null }).then((posts) => {
+  await fetchPosts({ first: options.itemsPerPage || itemsPerPage, after: null }).then((posts) => {
     /**
      * Map over the posts array to create the
      * single-post pages
