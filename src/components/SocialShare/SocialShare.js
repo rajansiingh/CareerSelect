@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import {
   FacebookShareCount,
@@ -30,6 +30,9 @@ import exampleImage from "../../images/careerselect.png"
 
 const SocialShare = ({ shareUrl }) => {
   const title = "Career Select"
+  useEffect(() => {
+    shareUrl = window && window.location.href
+  }, [])
   return (<div className="Demo__container">
     <div className="Demo__some-network">
       <FacebookShareButton
@@ -102,8 +105,8 @@ const SocialShare = ({ shareUrl }) => {
 
     <div className="Demo__some-network">
       <PinterestShareButton
-        url={String(window.location)}
-        media={`${String(window.location)}/${exampleImage}`}
+        url={shareUrl}
+        media={exampleImage}
         className="Demo__some-network__share-button"
       >
         <PinterestIcon size={32} round/>
@@ -151,7 +154,7 @@ SocialShare.propTypes = {
 }
 
 SocialShare.defaultProps = {
-  shareUrl: window && String(window.location.href) || "http://careerselect.in/",
+  shareUrl: "https://careerselect.in/",
 }
 
 export default SocialShare
