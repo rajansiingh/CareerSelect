@@ -30,7 +30,7 @@ const Listing = ({ data, type = [] }) => {
   const List = <div className={s.listing}>
     <header>
       <Link to={`${blogURI}/${uri}/`}>
-        {featuredImage && <FluidImage image={featuredImage} style={{ margin: 0 }}/>}
+        {featuredImage && <FluidImage image={featuredImage} style={{ margin: 0 }} alt={title}/>}
         <h2>{title}</h2>
       </Link>
     </header>

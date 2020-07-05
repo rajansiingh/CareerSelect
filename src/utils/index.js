@@ -5,6 +5,7 @@
  * @param wordPressUrl
  * @param blogURI
  */
+const startWithRegex = /^(http|https):\/\//g;
 export const CreateLocalLink = (menuItem, wordPressUrl, blogURI='blog/') => {
   const { url, connectedObject } = menuItem;
 
@@ -14,7 +15,9 @@ export const CreateLocalLink = (menuItem, wordPressUrl, blogURI='blog/') => {
   /**
    * Always want to pull of our API URL.
    */
-  let newUri = url.replace(wordPressUrl, '');
+  let newUri = url.replace(startWithRegex, '');
+  let newWordPressUrl = wordPressUrl.replace(startWithRegex, '')
+  newUri = newUri.replace(newWordPressUrl, '');
 
   /**
    * If it's a blog link, respect the users blogURI setting.

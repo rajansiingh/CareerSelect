@@ -33,7 +33,7 @@ const Header = ({ siteTitle }) => (
       <a id="nav-toggle" href="#" onClick={()=>{
         document.getElementById('nav-toggle').classList.toggle( "active" )
         document.getElementsByClassName('navigation')[0].classList.toggle( "active" )
-      }}><span></span></a>
+      }}><span/></a>
     </div>
 
     <Menu />

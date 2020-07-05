@@ -9,6 +9,7 @@ import SEO from '../../components/SEO/SEO'
 import UniversalLink from "../../components/Link/UniversalLink"
 import Globals from '../../../globals';
 import * as dayjs from "dayjs"
+import SocialShare from "../../components/SocialShare/SocialShare"
 
 const syntaxHighlighter = content => {
   if (!content) {
@@ -39,6 +40,7 @@ const Post = ({ pageContext: post }) => {
           <UniversalLink to={`${Globals.authorURI}/${post.author.slug}`}>{post.author.name}</UniversalLink> |
           Updated : {displayDate}
         </div>
+        <SocialShare/>
         <div dangerouslySetInnerHTML={{ __html: post.content }}/>
           {/*<PostEntryTitle*/}
           {/*  location="single"*/}

@@ -10,7 +10,7 @@ export const options = {
         return link.indexOf(url) > -1
       })
       if (linkInArray) {
-        const url = link.replace(new RegExp(`^(http|https):\/\/${linkInArray}`) , '');
+        const url = link.replace(new RegExp(`^(http|https)://${linkInArray}`) , '');
         return (
           <GatsbyLink to={`/blog/${url}`}>
             {domToReact(children, options)}

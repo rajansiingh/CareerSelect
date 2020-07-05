@@ -1,7 +1,5 @@
 const { log } = require('./utils');
-
 const { PageTemplateFragment } = require('../src/templates/page/data.js');
-const {FluidImageFragment} = require("../src/templates/fragments")
 const pageTemplate = require.resolve('../src/templates/page/index.js');
 // const homeTemplate = require.resolve('../src/templates/home/index.js');
 // const aboutTemplate = require.resolve('../src/templates/about/index.js');
@@ -42,7 +40,6 @@ const GET_PAGES = `
   }
   # Here we make use of the imported fragments which are referenced above
   ${PageTemplateFragment}
-  ${FluidImageFragment}
 `;
 
 /**
