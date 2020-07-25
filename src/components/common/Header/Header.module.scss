@@ -1,0 +1,66 @@
+/**
+ * Author : rajansingh
+ * Created On : 25/07/20
+ */
+@import "../../../styles";
+
+.header {
+  background: $primary-color;
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+
+  .site_Title{
+    padding: 1.45rem 1.08rem;
+    position: relative;
+    text-align: center;
+  }
+
+  .toggle_Nav {
+    @media (max-width: 640px) {
+      position: absolute;
+      top: 30px;
+      right: 4%;
+      cursor: pointer;
+      padding: 10px 35px 16px 0;
+
+      span,
+      span:before,
+      span:after {
+        cursor: pointer;
+        border-radius: 1px;
+        height: 5px;
+        width: 35px;
+        background: white;
+        position: absolute;
+        display: block;
+        content: '';
+        transition: all 500ms ease-in-out;
+      }
+
+      span:before {
+        top: -10px;
+      }
+      span:after {
+        bottom: -10px;
+      }
+    }
+
+    &.active span {
+      background-color: transparent;
+
+      &:before {
+        transform: rotate(45deg);
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+      }
+
+      &:before,
+      &:after {
+        top: 0;
+      }
+    }
+  }
+}

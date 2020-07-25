@@ -1,0 +1,30 @@
+/**
+ * Author : rajansingh
+ * Created On : 25/07/20
+ */
+@import "../../styles";
+
+.navigation {
+  background: rgb(247, 247, 247);
+  a {
+    padding: 10px;
+    display: inline-block;
+    &:hover {
+      color: rgb(0, 0, 0);
+      background: rgb(205, 205, 205);
+    }
+  }
+
+  @include respond(phone){
+    .navigation {
+      display: none;
+      a {
+        display: block;
+      }
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
+

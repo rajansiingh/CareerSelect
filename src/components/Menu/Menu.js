@@ -2,6 +2,7 @@ import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 
 import MenuItem from "./MenuItem"
+import s from './Menu.module.scss';
 
 /**
  * Define MenuItem fragment and get all primary menu items.
@@ -39,8 +40,8 @@ const Menu = () => {
           const wordPressUrl = data.wpgraphql.generalSettings.url
 
           return (
-            <div className='navigation'>
-              <div className='container'>
+            <div className={s.navigation}>
+              <div>
               {
                 menuItems &&
                 menuItems.map((menuItem) => (

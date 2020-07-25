@@ -1,0 +1,12 @@
+/**
+ * Author : rajansingh
+ * Created On : 25/07/20
+ */
+@import "../../../styles";
+
+.page-footer{
+  text-align: center;
+  @include fontStyle(1rem, $secondary-color);
+  padding: 1rem 2.5rem;
+  background: $primary-color;
+}

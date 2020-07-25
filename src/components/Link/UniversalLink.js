@@ -1,5 +1,6 @@
 import React from "react"
 import { Link as GatsbyLink } from "gatsby"
+import s from "./Link.module.scss"
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
@@ -22,7 +23,7 @@ const UniversalLink = ({ children, to, activeClassName, partiallyActive, ...othe
     )
   }
   return (
-    <a href={to} {...other} target="_blank" rel="noopener noreferrer">
+    <a className={s.link} href={to} {...other} target="_blank" rel="noopener noreferrer">
       {children}
     </a>
   )

@@ -46,7 +46,7 @@ module.exports = {
       options: {
         typeName: "WPGraphQL",
         fieldName: "wpgraphql",
-        url: `${process.env.WORDPRESS_URL}/graphql`,
+        url: `https://content.careerselect.in/graphql`,
       },
     },
     {
@@ -55,5 +55,15 @@ module.exports = {
         trackingId: "UA-171063877-1",
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Nunito Sans`,
+          `source Light\:300,300i` // you can also specify font weights and styles
+        ],
+        display: 'swap'
+      }
+    }
   ],
 }

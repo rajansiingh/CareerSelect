@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 .listing {
   border-radius: 8px;
   box-shadow: rgba(195, 195, 195, 0.55) 5px 5px 10px 0;
@@ -5,7 +7,7 @@
   list-style: none;
   padding: 0 1em 1em;
   margin: 8px;
-  width: calc(33% - 16px);
+  width: calc(33% - 1.6rem);
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.19) 0 5px 10px, rgba(0, 0, 0, 0.23) 0 6px 6px;
@@ -17,7 +19,7 @@
   }
 
   .desc {
-    font-size: 0.75rem;
+    font-size: 1.2rem;
   }
 
   a.tags {
@@ -36,18 +38,7 @@
     }
   }
 
-}
-
-@media (min-width: 769px) {
-  .listing {
-    img {
-      border-radius: 8px 8px 0 0;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .listing {
+  @include respond(phone){
     width: 100%;
     margin: 8px 0;
   }
