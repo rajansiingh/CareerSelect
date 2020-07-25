@@ -13,10 +13,10 @@ const Header = ({ siteTitle }) => {
             {siteTitle}
           </Link>
         </h1>
-        <a id="nav-toggle" href="#" className={c.toggle_Nav} onClick={() => {
+        <button id="nav-toggle" aria-label="toggle-btn" className={c.toggle_Nav} onClick={() => {
           document.getElementById("nav-toggle").classList.toggle(c.active)
-          document.getElementsByClassName("navigation")[0].classList.toggle(c.active)
-        }}><span/></a>
+          document.getElementById("menu-navigation").classList.toggle('active')
+        }}><span/></button>
       </div>
       <Menu/>
     </header>

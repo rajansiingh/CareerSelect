@@ -9,40 +9,50 @@
 
 html {
   box-sizing: border-box;
-
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
   @include fontStyle(62.5%);  // 10px / 16px By default browser font-size ---> 1rem = 10px;
 }
 body{
   font-family: $font-primary;
-  @include fontStyle(1.6rem);
+  @include fontStyle(1.6rem, false, 480);
 }
 a {
   text-decoration: none;
-  color: $black;
+  color: rgb(242, 63, 45);
+  background: rgb(255, 245, 244);
 }
-.responsiveImage img{
-  width: 100%;
-  height: auto;
+:global{
+  .responsiveImage img{
+    width: 100%;
+    height: auto;
+  }
+  .active {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+  }
+  ::selection {
+    color: rgb(242, 63, 45);
+    background-color: rgb(255, 245, 244);
+  }
 }
-
 .mainContainer{
   position: relative;
   height: 100vh;
 
   .child_Container {
-    min-height: calc(100vh - 52px);
-    padding: 12rem 0 1rem;
-    margin-right: auto;
-    margin-left: auto;
+    min-height: calc(100vh - 46px);
+    padding: 15rem 0 1rem;
+    margin: 0 auto;
     width: calc(70vw);
 
     @include respond(tab-port){
       width: 80vw;
-      padding-top: 10rem;
     }
     @include respond(phone){
       width: 95vw;
-      padding-top: 10rem;
     }
 
     main{

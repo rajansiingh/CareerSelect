@@ -1,0 +1,15 @@
+/**
+ * Author : rajansingh
+ * Created On : 25/07/20
+ */
+@import "../styles";
+.contact{
+  padding: 4rem 4rem;
+  @include fontStyle(2rem, false, 400);
+
+  button{
+    padding: 1.5rem;
+    margin: 1rem;
+    width: 20rem;
+  }
+}

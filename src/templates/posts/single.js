@@ -11,21 +11,21 @@ import Globals from '../../../globals';
 import * as dayjs from "dayjs"
 import SocialShare from "../../components/SocialShare/SocialShare"
 
-const syntaxHighlighter = content => {
-  if (!content) {
-    return {
-      __html: '',
-    }
-  }
-
-  var regex = /\[javascript\]|\[php\]|\[html\]|\[css\]/g
-
-  var regex2 = /\[\/javascript\]|\[\/php\]|\[\/html\]|\[\/css\]/gi
-
-  return {
-    __html: content.replace(regex, '<code>').replace(regex2, '</code>'),
-  }
-}
+// const syntaxHighlighter = content => {
+//   if (!content) {
+//     return {
+//       __html: '',
+//     }
+//   }
+//
+//   var regex = /\[javascript\]|\[php\]|\[html\]|\[css\]/g
+//
+//   var regex2 = /\[\/javascript\]|\[\/php\]|\[\/html\]|\[\/css\]/gi
+//
+//   return {
+//     __html: content.replace(regex, '<code>').replace(regex2, '</code>'),
+//   }
+// }
 
 const Post = ({ pageContext: post }) => {
   const displayDate = dayjs(post.date).format("MMM D, YYYY h:mm A")

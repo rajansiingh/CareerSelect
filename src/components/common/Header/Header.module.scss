@@ -10,18 +10,31 @@
   width: 100vw;
   z-index: 1;
 
-  h1 a{
+  h1 a {
     color: $secondary-color;
   }
 
-  .site_Title{
+  .site_Title {
     padding: 1.45rem 1.08rem;
     position: relative;
     text-align: center;
   }
 
   .toggle_Nav {
-    @media (max-width: 640px) {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      display: inline;
+      margin: 0;
+      padding: 0;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    @include respond(phone){
       position: absolute;
       top: 30px;
       right: 4%;
@@ -35,7 +48,7 @@
         border-radius: 1px;
         height: 5px;
         width: 35px;
-        background: white;
+        background: $black;;
         position: absolute;
         display: block;
         content: '';
@@ -50,20 +63,23 @@
       }
     }
 
-    &.active span {
-      background-color: transparent;
+    &.active {
+      span {
+        background-color: transparent;
 
-      &:before {
-        transform: rotate(45deg);
-      }
 
-      &:after {
-        transform: rotate(-45deg);
-      }
+        &:before {
+          transform: rotate(45deg);
+        }
 
-      &:before,
-      &:after {
-        top: 0;
+        &:after {
+          transform: rotate(-45deg);
+        }
+
+        &:before,
+        &:after {
+          top: 0;
+        }
       }
     }
   }

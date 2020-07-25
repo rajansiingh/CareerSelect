@@ -28,7 +28,7 @@ const Listing = ({ data, type = [] }) => {
   const displayDate = dayjs(date).format("MMM DD, YYYY")
 
   const List = <div className={s.listing}>
-    <header>
+    <header className={'responsiveImage'}>
       <Link to={`${blogURI}/${uri}/`}>
         {featuredImage && <FluidImage image={featuredImage} style={{ margin: 0 }} alt={title}/>}
         <h2>{title}</h2>
@@ -41,7 +41,7 @@ const Listing = ({ data, type = [] }) => {
       {withAuthor && author && <div>
         By:
         <Link to={`${authorURI}/${author.slug}/`}>
-          {author.avatar.url && <img src={author.avatar.url}/>} {author.name}
+          {author.avatar.url && <img src={author.avatar.url} alt={author.name || ''}/>} {author.name}
         </Link>
       </div>}
       {withCategory && categories && nodeMapper(categories.nodes, categoryURI)}
