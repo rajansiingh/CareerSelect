@@ -10,6 +10,10 @@
   width: 100vw;
   z-index: 1;
 
+  h1 a{
+    color: $secondary-color;
+  }
+
   .site_Title{
     padding: 1.45rem 1.08rem;
     position: relative;
