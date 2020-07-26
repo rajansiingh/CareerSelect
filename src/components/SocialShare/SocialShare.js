@@ -31,7 +31,7 @@ import Globals from "../../../globals"
 
 
 const SocialShare = ({ urlToShare }) => {
-  let title = document.title
+  let title = "Career Select"
   let shareUrl = urlToShare
   return (
     <div className={s.container}>
