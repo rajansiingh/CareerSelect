@@ -40,14 +40,14 @@ const Menu = () => {
           const wordPressUrl = data.wpgraphql.generalSettings.url
 
           return (
-            <div className={s.navigation} id={'menu-navigation'}>
+            <nav className={s.navigation} id={'menu-navigation'}>
               {
                 menuItems &&
                 menuItems.map((menuItem) => (
                   <MenuItem key={menuItem.id} menuItem={menuItem} wordPressUrl={wordPressUrl}/>
                 ))
               }
-            </div>
+            </nav>
           )
         }
         return null

@@ -4,7 +4,8 @@ const Globals = {
   categoryURI: '/category',
   tagsURI: '/topic',
   starterPages: false,
-  itemsPerPage: 9
+  itemsPerPage: 9,
+  siteURI: 'www.careerselect.in'
 }
 
 module.exports = Globals

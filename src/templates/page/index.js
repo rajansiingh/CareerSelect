@@ -11,7 +11,7 @@ const Page = ({ pageContext }) => {
     <Layout>
       <SEO title={title}/>
       <h1> {title} </h1>
-      <div className={'responsiveImage'} dangerouslySetInnerHTML={{ __html: content }}/>
+      <div className={"responsive themeLink"} dangerouslySetInnerHTML={{ __html: content }}/>
     </Layout>
   )
 }

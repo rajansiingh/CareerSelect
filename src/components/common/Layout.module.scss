@@ -16,17 +16,22 @@ html {
 }
 body{
   font-family: $font-primary;
+  background: #f7f7f7;
   @include fontStyle(1.6rem, false, 480);
 }
-a {
+a{
   text-decoration: none;
-  color: rgb(242, 63, 45);
-  background: rgb(255, 245, 244);
+  color: $primary-color;
+  background: $white;
 }
 :global{
-  .responsiveImage img{
-    width: 100%;
-    height: auto;
+  .responsive{
+    img,
+    iframe,
+    video{
+      width: 100%;
+      height: auto;
+    }
   }
   .active {
     flex-direction: column;
@@ -34,29 +39,37 @@ a {
     align-items: center;
   }
   ::selection {
-    color: rgb(242, 63, 45);
-    background-color: rgb(255, 245, 244);
+    color: $primary-color;
+    background-color: $white;
   }
 }
-.mainContainer{
+.siteContainer{
   position: relative;
   height: 100vh;
 
-  .child_Container {
+  .mainContainer {
     min-height: calc(100vh - 46px);
-    padding: 15rem 0 1rem;
-    margin: 0 auto;
-    width: calc(70vw);
+    margin-top: 13rem;
 
-    @include respond(tab-port){
-      width: 80vw;
-    }
     @include respond(phone){
-      width: 95vw;
+      margin-top: 7rem;
     }
 
+    main:before{
+      @include position(absolute, 0, false, false, 0);
+      @include dimensions(100%, 100%);
+    }
     main{
-      display: block;
+      @include position(relative);
+      @include dimensions(80rem, false, 100%);
+
+      margin:0 auto;
+      padding:1.2rem 0;
+
+
+      @include respond(phone){
+        @include dimensions(50rem);
+      }
     }
   }
 }

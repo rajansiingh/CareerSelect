@@ -17,9 +17,9 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div className={s.mainContainer}>
+    <div className={s.siteContainer}>
       <Header siteTitle={data.site.siteMetadata.title}/>
-      <div className={s.child_Container}>
+      <div className={s.mainContainer}>
         <main>{children}</main>
       </div>
       <Footer/>
