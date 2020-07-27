@@ -5,18 +5,17 @@ import Menu from "../../Menu/Menu"
 import c from "./Header.module.scss"
 
 const Header = ({ siteTitle }) => {
-  return(
+  const toggleNav = () => {
+    document.getElementById("nav-toggle").classList.toggle(c.active)
+    document.getElementById("menu-navigation").classList.toggle("active")
+  }
+  return (
     <header className={c.header}>
-      <div className={c.site_Title}>
-        <h1>
-          <Link to="/">
-            {siteTitle}
-          </Link>
-        </h1>
-        <button id="nav-toggle" aria-label="toggle-btn" className={c.toggle_Nav} onClick={() => {
-          document.getElementById("nav-toggle").classList.toggle(c.active)
-          document.getElementById("menu-navigation").classList.toggle('active')
-        }}><span/></button>
+      <div className={c.siteTitle}>
+        <Link to="/">
+          {siteTitle}
+        </Link>
+        <button id="nav-toggle" aria-label="toggle-btn" className={c.toggle_Nav} onClick={toggleNav}/>
       </div>
       <Menu/>
     </header>

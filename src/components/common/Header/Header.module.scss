@@ -5,36 +5,32 @@
 @import "../../../styles";
 
 .header {
-  background: $primary-color;
-  position: fixed;
-  width: 100vw;
-  z-index: 1;
+  @include position(fixed, 0, false, false, false, 1);
+  @include dimensions(100vw);
+  background: $white;
 
-  h1 a {
-    color: $secondary-color;
-  }
 
-  .site_Title {
+  .siteTitle {
+    @include fontStyle(3rem);
     padding: 1.45rem 1.08rem;
-    position: relative;
     text-align: center;
   }
 
   .toggle_Nav {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      text-decoration: underline;
-      display: inline;
-      margin: 0;
-      padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline;
+    margin: 0;
+    padding: 0;
 
     &:hover,
     &:focus {
       text-decoration: none;
     }
 
-    @include respond(phone){
+    @include respond(phone) {
       position: absolute;
       top: 30px;
       right: 4%;

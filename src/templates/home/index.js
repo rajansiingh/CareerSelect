@@ -5,7 +5,7 @@ import SEO from "../../components/SEO/SEO"
 const Home = (props) => {
   console.log("props---->", props)
   return (
-    <Layout fullWidth="true" className='responsiveImage'>
+    <Layout fullWidth="true" className='responsive'>
       <SEO title="Home"/>
       This is Dynamic generated Home Page
     </Layout>

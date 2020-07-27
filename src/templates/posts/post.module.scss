@@ -1,0 +1,40 @@
+/**
+ * Author : rajansingh
+ * Created On : 26/07/20
+ */
+@import "../../styles";
+
+.postContainer{
+
+  .postDetails{
+    @include fontStyle(1.6rem, $white);
+
+    padding: 1rem;
+    background: linear-gradient(to bottom right, darken($black, 10%), darken($white, 50%));
+
+    .categoryDetails{
+      a{
+        padding: 0.5rem;
+      }
+    }
+
+    h1{
+      @include fontStyle(3rem, $white);
+      padding:0.5rem 0;
+    }
+
+    .authorDetails{
+      display: flex;
+      justify-content: space-between;
+      color: $primary-color;
+
+      a{
+        background: transparent;
+      }
+    }
+  }
+
+  .contentContainer{
+    padding: 2rem;
+  }
+}
