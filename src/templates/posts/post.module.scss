@@ -7,10 +7,8 @@
 .postContainer{
 
   .postDetails{
-    @include fontStyle(1.6rem, $white);
-
+    @include fontStyle(1.6rem, $black);
     padding: 1rem;
-    background: linear-gradient(to bottom right, darken($black, 10%), darken($white, 50%));
 
     .categoryDetails{
       a{
@@ -19,7 +17,7 @@
     }
 
     h1{
-      @include fontStyle(3rem, $white);
+      @include fontStyle(3rem);
       padding:0.5rem 0;
     }
 

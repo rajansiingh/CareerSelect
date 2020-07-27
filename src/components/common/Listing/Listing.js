@@ -41,7 +41,7 @@ const Listing = ({ data, type = [] }) => {
       {withAuthor && author && <div>
         By:
         <Link to={`${authorURI}/${author.slug}/`}>
-          {author.avatar.url && <img src={author.avatar.url} alt={author.name || ''}/>} {author.name}
+          {author.avatar.url && <img  className={s.image} src={author.avatar.url} alt={author.name || ''}/>} {author.name}
         </Link>
       </div>}
       {withCategory && categories && nodeMapper(categories.nodes, categoryURI)}

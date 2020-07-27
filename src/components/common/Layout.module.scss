@@ -18,19 +18,38 @@ body{
   font-family: $font-primary;
   background: #f7f7f7;
   @include fontStyle(1.6rem, false, 480);
+  line-height: 2.2em;
 }
 a{
   text-decoration: none;
   color: $primary-color;
-  background: $white;
 }
+
 :global{
   .responsive{
-    img,
-    iframe,
-    video{
+    img
+    {
       width: 100%;
       height: auto;
+    }
+    .video-container {
+      overflow: hidden;
+      position: relative;
+      width:100%;
+    }
+
+    .video-container::after {
+      padding-top: 56.25%;
+      display: block;
+      content: '';
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   }
   .active {
@@ -61,12 +80,15 @@ a{
     }
     main{
       @include position(relative);
-      @include dimensions(80rem, false, 100%);
+      @include dimensions(120rem, false, 100%);
 
       margin:0 auto;
       padding:1.2rem 0;
 
 
+      @include respond(tab-land){
+        @include dimensions(80rem);
+      }
       @include respond(phone){
         @include dimensions(50rem);
       }

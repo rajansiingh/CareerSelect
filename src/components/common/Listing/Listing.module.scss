@@ -8,6 +8,7 @@
   padding: 0 1em 1em;
   margin: 8px;
   width: calc(33% - 1.6rem);
+  vertical-align: top;
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.19) 0 5px 10px, rgba(0, 0, 0, 0.23) 0 6px 6px;
@@ -20,6 +21,14 @@
 
   .desc {
     font-size: 1.6rem;
+    p:first-child {
+      height: 200px;
+      overflow: hidden;
+    }
+  }
+
+  .image {
+    border-radius: 100%;
   }
 
   a.tags {

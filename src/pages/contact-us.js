@@ -8,24 +8,32 @@ const ContactUs = () => (
     <SEO title="Contact Us"/>
     <div className={s.contact}>
       <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" netlify-honeypot="bot-field">
-        <p style={{ display: "none" }}>
-          <label>Don’t fill this out if you're human: <input aria-label="bot-field" name="bot-field"/></label>
-        </p>
-        <p>
-          <label>Your Name: <input aria-label="Name" type="text" name="name"/></label>
-        </p>
-        <p>
-          <label>Your Email: <input aria-label="Email" type="email" name="email"/></label>
-        </p>
-        <p>
-          <label>Subject: <input aria-label="Subject" type="text" name="text"/></label>
-        </p>
-        <p>
-          <label>Message: <textarea aria-label="Message" name="message"/></label>
-        </p>
-        <p>
-          <button aria-label="Send" type="submit">Send</button>
-        </p>
+        <ul>
+          <li style={{ display: "none" }}>
+            <label>Don’t fill this out if you're human:</label>
+            <input aria-label="bot-field" name="bot-field"/>
+          </li>
+          <li>
+            <label>Name:</label>
+            <input aria-label="Name" type="text" name="name"/>
+          </li>
+          <li>
+            <label>Email:</label>
+            <input aria-label="Email" type="email" name="email"/>
+          </li>
+          <li>
+            <label>Subject:</label>
+            <input aria-label="Subject" type="text" name="text"/>
+          </li>
+          <li>
+            <label>Message:</label>
+            <textarea aria-label="Message" name="message"/>
+          </li>
+          <li>
+            <label></label>
+            <button  className={s.primaryButton} aria-label="Send" type="submit">Send</button>
+          </li>
+        </ul>
       </form>
     </div>
   </Layout>

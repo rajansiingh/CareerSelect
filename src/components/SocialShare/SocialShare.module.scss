@@ -3,10 +3,9 @@
 .container {
   @include fontStyle(1.6rem, $white);
   @include flexContainer(flex, false, center);
-
-  background: linear-gradient(to top left, darken($black, 10%), darken($white, 50%));
+  background: $grey-shade;
   position: sticky;
-  top: 10.8rem;
+  top: 11.8rem;
 
   @include respond(phone){
     top: 6.8rem;
