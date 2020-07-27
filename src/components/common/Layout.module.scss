@@ -87,7 +87,7 @@ a{
 
 
       @include respond(tab-land){
-        @include dimensions(80rem);
+        @include dimensions(85%);
       }
       @include respond(phone){
         @include dimensions(50rem);
