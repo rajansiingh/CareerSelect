@@ -19,7 +19,7 @@
   .toggleNav {
     display: none;
     position: absolute;
-    right: 5rem;
+    right: 2rem;
     top: 3rem;
 
     @include respond(phone) {

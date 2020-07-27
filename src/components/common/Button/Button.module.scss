@@ -37,9 +37,6 @@
   &.active {
     background-color: transparent;
     border: none;
-    width: 0;
-    height: 0;
-    position: relative;
 
     &:before {
       transform: rotate(45deg);
