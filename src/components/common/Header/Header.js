@@ -3,10 +3,10 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import Menu from "../../Menu/Menu"
 import c from "./Header.module.scss"
+import Button from "../Button/Button"
 
 const Header = ({ siteTitle }) => {
   const toggleNav = () => {
-    document.getElementById("nav-toggle").classList.toggle(c.active)
     document.getElementById("menu-navigation").classList.toggle("active")
   }
   return (
@@ -15,7 +15,7 @@ const Header = ({ siteTitle }) => {
         <Link to="/">
           {siteTitle}
         </Link>
-        <button id="nav-toggle" aria-label="toggle-btn" className={c.toggle_Nav} onClick={toggleNav}/>
+        <Button id="nav-toggle" type="hamburger"  containerClass={c.toggleNav} onClick={toggleNav}/>
       </div>
       <Menu/>
     </header>

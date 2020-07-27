@@ -1,0 +1,54 @@
+/**
+ * Author : rajansingh
+ * Created On : 27/07/20
+ */
+@import "../../../styles";
+
+.hamburger {
+  cursor: pointer;
+  position: relative;
+  outline: none;
+
+  &,
+  &:before,
+  &:after {
+    border-radius: 1px;
+    height: 5px;
+    width: 35px;
+    background: $black;;
+    display: block;
+    content: '';
+    left: 0;
+    transition: all 500ms ease-in-out;
+  }
+
+  &:before {
+    position: absolute;
+    top: -10px;
+    left: -2px;
+  }
+
+  &:after {
+    position: absolute;
+    bottom: -10px;
+    left: -2px;
+  }
+
+  &.active {
+    background-color: transparent;
+    border: none;
+    width: 0;
+    height: 0;
+    position: relative;
+
+    &:before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+  }
+}

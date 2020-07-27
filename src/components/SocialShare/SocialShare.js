@@ -1,10 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {
-  FacebookShareCount,
-  PinterestShareCount,
-  RedditShareCount,
-  TumblrShareCount,
   FacebookShareButton,
   FacebookMessengerShareButton,
   FacebookMessengerIcon,
@@ -43,12 +39,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <FacebookIcon size={32} round/>
         </FacebookShareButton>
-
-        <div>
-          <FacebookShareCount url={shareUrl} className={cx(s.socialNetwork, s.shareCount)}>
-            {count => count}
-          </FacebookShareCount>
-        </div>
       </div>
 
       <div className={s.socialNetwork}>
@@ -69,8 +59,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <TwitterIcon size={32} round/>
         </TwitterShareButton>
-
-        <div className={cx(s.socialNetwork, s.shareCount)}>&nbsp;</div>
       </div>
 
       <div className={s.socialNetwork}>
@@ -81,8 +69,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <TelegramIcon size={32} round/>
         </TelegramShareButton>
-
-        <div className={cx(s.socialNetwork, s.shareCount)}>&nbsp;</div>
       </div>
 
       <div className={s.socialNetwork}>
@@ -94,8 +80,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <WhatsappIcon size={32} round/>
         </WhatsappShareButton>
-
-        <div className={cx(s.socialNetwork, s.shareCount)}>&nbsp;</div>
       </div>
 
       <div className={s.socialNetwork}>
@@ -112,10 +96,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <PinterestIcon size={32} round/>
         </PinterestShareButton>
-
-        <div>
-          <PinterestShareCount url={shareUrl} className={cx(s.socialNetwork, s.shareCount)}/>
-        </div>
       </div>
 
       <div className={s.socialNetwork}>
@@ -128,10 +108,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <RedditIcon size={32} round/>
         </RedditShareButton>
-
-        <div>
-          <RedditShareCount url={shareUrl} className={cx(s.socialNetwork, s.shareCount)}/>
-        </div>
       </div>
 
       <div className={s.socialNetwork}>
@@ -142,10 +118,6 @@ const SocialShare = ({ urlToShare }) => {
         >
           <TumblrIcon size={32} round/>
         </TumblrShareButton>
-
-        <div>
-          <TumblrShareCount url={shareUrl} className={cx(s.socialNetwork, s.shareCount)}/>
-        </div>
       </div>
     </div>)
 }
