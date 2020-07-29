@@ -1,5 +1,5 @@
 import React from "react"
-import cx from 'classnames';
+import cx from "classnames"
 import Layout from "../../components/common/Layout"
 // import Layout from '../../components/Layout'
 // import PostEntryMeta from '../../components/PostEntryMeta'
@@ -31,7 +31,6 @@ import s from "./post.module.scss"
 
 const Post = ({ pageContext: post }) => {
   const displayDate = dayjs(post.date).format("MMM D, YYYY h:mm A")
-  console.log(post)
   return (
     <Layout>
       <SEO title={`${post.title}`}/>
@@ -53,7 +52,7 @@ const Post = ({ pageContext: post }) => {
           </div>
         </div>
         <SocialShare urlToShare={`${Globals.siteURI}${Globals.blogURI}${post.uri}`}/>
-        <div className={cx(s.contentContainer,"responsive")} dangerouslySetInnerHTML={{ __html: post.content }}/>
+        <div className={cx(s.contentContainer, "responsive")} dangerouslySetInnerHTML={{ __html: post.content }}/>
         {/*<PostEntryTitle*/}
         {/*  location="single"*/}
         {/*  post={post}*/}

@@ -12,6 +12,7 @@ console.log(`This WordPress Endpoint is used: '${process.env.WORDPRESS_URL}'`)
 
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://careerselect.in`,
     title: `Career Select`,
     description: `Building Your Career`,
     author: `Rajan Singh`,
@@ -47,7 +48,7 @@ module.exports = {
       options: {
         typeName: "WPGraphQL",
         fieldName: "wpgraphql",
-        url: `${process.env.WORDPRESS_URL}/graphql`,
+        url: `https://content.careerselect.in/graphql`,
       },
     },
     {
@@ -65,6 +66,7 @@ module.exports = {
         ],
         display: 'swap'
       }
-    }
+    },
+    'gatsby-plugin-sitemap'
   ],
 }
