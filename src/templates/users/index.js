@@ -6,7 +6,6 @@ const User = props => {
   const {
     pageContext: { name, posts },
   } = props
-  console.log('props-->',props);
   return (
     <Layout>
       <SEO

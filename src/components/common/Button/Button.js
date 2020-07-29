@@ -31,7 +31,7 @@ const Button = (props) => {
 
 Button.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   type: PropTypes.string,
   styleClass: PropTypes.string,
   onClick: PropTypes.func,

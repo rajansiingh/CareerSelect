@@ -1,27 +1,57 @@
-import React from 'react'
-import Layout from '../../components/common/Layout'
-import SEO from '../../components/SEO/SEO'
+import React, { Component } from "react"
+import Layout from "../../components/common/Layout"
+import SEO from "../../components/SEO/SEO"
+import Button from "../../components/common/Button/Button"
 
-const Contact = ({ location }) => {
-  return (
-    <Layout location={{ location }} fullWidth="true">
-      <SEO title="Contact" />
+const encode = (data) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
+
+class Contact extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { name: "", email: "", message: "" }
+  }
+
+  handleChange = e => this.setState({ [e.target.name]: e.target.value })
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    if (this.state["bot-field"] !== "") {
+      alert("Humans do not spam !!")
+      return
+    }
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...this.state }),
+    })
+      .then(() => alert("Your form has been submitted sucessfully! \n We will get in touch with you shortly"))
+      .catch(error => alert(error))
+  }
+
+  render() {
+    return (
+      <Layout>
+        <SEO title="Contact"/>
         <form
           name="contact"
-          method="post"
-          action="/contact"
+          onSubmit={this.handleSubmit}
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
-            <input type="hidden" name="form-name" value="contact" />
-            <input style={{ display: "none" }} name="bot-field" />
-            <Input placeholder="Name" name="name" />
-            <Input placeholder="Email" name="email" />
-            <Textarea placeholder="Message" name="message" />
-            <Button variantColor="blue" type="submit">Submit</Button>
+          <input style={{ display: "none" }} name="bot-field" onChange={this.handleChange}/>
+          <input placeholder="Name" name="name" onChange={this.handleChange}/>
+          <input placeholder="Email" name="email" onChange={this.handleChange}/>
+          <Textarea placeholder="Message" name="message" onChange={this.handleChange}/>
+          <Button type="submit">Submit</Button>
         </form>
-    </Layout>
-  )
+      </Layout>
+    )
+  }
 }
 
 export default Contact

@@ -22,7 +22,7 @@ import {
 } from "react-share"
 import cx from "classnames"
 import s from "./SocialShare.module.scss"
-import exampleImage from "../../images/careerselect.png"
+import exampleImage from "../../images/careerselect.jpg"
 import Globals from "../../../globals"
 
 

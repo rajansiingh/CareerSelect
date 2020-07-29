@@ -52,7 +52,7 @@ const Post = ({ pageContext: post }) => {
             {displayDate}
           </div>
         </div>
-        <SocialShare urlToShare={`${Globals.siteURI}/${Globals.blogURI}${post.uri}`}/>
+        <SocialShare urlToShare={`${Globals.siteURI}${Globals.blogURI}${post.uri}`}/>
         <div className={cx(s.contentContainer,"responsive")} dangerouslySetInnerHTML={{ __html: post.content }}/>
         {/*<PostEntryTitle*/}
         {/*  location="single"*/}

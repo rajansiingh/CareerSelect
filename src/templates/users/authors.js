@@ -6,7 +6,6 @@ import SEO from "../../components/SEO/SEO"
 
 const Blog = ({ pageContext }) => {
   const { nodes, pageNumber, hasNextPage, itemsPerPage, allPosts } = pageContext
-  console.log({ nodes, pageNumber, hasNextPage, itemsPerPage, allPosts });
   return (
     <Layout>
       <SEO
