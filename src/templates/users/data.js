@@ -18,5 +18,5 @@ const UserPreviewFragment = `
           }
         }
     }
-`
-module.exports.UserPreviewFragment = UserPreviewFragment
+`;
+module.exports.UserPreviewFragment = UserPreviewFragment;

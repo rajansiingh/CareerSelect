@@ -47,7 +47,7 @@ const PostTemplateFragment = `
       slug
     }
   }
-`
+`;
 
 const BlogPreviewFragment = `
   fragment BlogPreviewFragment on WPGraphQL_Post {
@@ -87,7 +87,36 @@ const BlogPreviewFragment = `
       slug
     }
   }
-`
+`;
 
-module.exports.PostTemplateFragment = PostTemplateFragment
-module.exports.BlogPreviewFragment = BlogPreviewFragment
+const SEOTemplateFragment = `
+fragment SEOTemplateFragment on WPGraphQL_Post {
+    seo {
+          canonical
+          focuskw
+          metaDesc
+          metaKeywords
+          metaRobotsNofollow
+          metaRobotsNoindex
+          opengraphModifiedTime
+          opengraphPublishedTime
+          title
+          twitterDescription
+          twitterTitle
+          opengraphAuthor
+          opengraphDescription
+          opengraphPublisher
+          opengraphSiteName
+          opengraphTitle
+          opengraphType
+          opengraphUrl
+          twitterImage {
+            altText
+            link
+          }
+     }
+}`
+
+module.exports.PostTemplateFragment = PostTemplateFragment;
+module.exports.BlogPreviewFragment = BlogPreviewFragment;
+module.exports.SEOTemplateFragment = SEOTemplateFragment;

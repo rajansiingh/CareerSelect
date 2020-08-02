@@ -1,5 +1,5 @@
 const { log } = require('./utils');
-const { PageTemplateFragment } = require('../src/templates/page/data.js');
+const { PageTemplateFragment, SEOTemplateFragment } = require('../src/templates/page/data.js');
 const pageTemplate = require.resolve('../src/templates/page/index.js');
 // const homeTemplate = require.resolve('../src/templates/home/index.js');
 // const aboutTemplate = require.resolve('../src/templates/about/index.js');
@@ -32,6 +32,9 @@ const GET_PAGES = `
               uri
 
               # This is the fragment used for the pages Template
+              ...SEOTemplateFragment
+              
+              # This is the fragment used for the pages Template
               ...PageTemplateFragment
 
           }
@@ -39,6 +42,7 @@ const GET_PAGES = `
     }
   }
   # Here we make use of the imported fragments which are referenced above
+  ${SEOTemplateFragment}
   ${PageTemplateFragment}
 `;
 

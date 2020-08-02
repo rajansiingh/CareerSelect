@@ -1,6 +1,7 @@
 const {
   PostTemplateFragment,
   BlogPreviewFragment,
+  SEOTemplateFragment
 } = require('../src/templates/posts/data.js');
 
 const postTemplate = require.resolve('../src/templates/posts/single.js');
@@ -33,12 +34,15 @@ query GET_POSTS($first:Int $after:String) {
         }
         nodes {
             uri
-
+            
+            # This is the fragment used for the SEO Template
+            ...SEOTemplateFragment
+            
             # This is the fragment used for the Post Template
             ...PostTemplateFragment
-
+            
             #This is the fragment used for the blog preview on archive pages
-            ...BlogPreviewFragment
+            ...BlogPreviewFragment     
         }
     }
   }
@@ -46,22 +50,7 @@ query GET_POSTS($first:Int $after:String) {
 # Here we make use of the imported fragments which are referenced above
 ${PostTemplateFragment}
 ${BlogPreviewFragment}
-`;
-
-const SITE_META = `
-  site {
-    siteMetadata {
-      title
-      description
-      author
-      twitter
-      siteUrl
-      wordPressUrl
-      menuName
-      mailChimpEndpoint
-      blogURI
-    }
-  }
+${SEOTemplateFragment}
 `;
 
 /**

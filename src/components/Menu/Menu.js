@@ -1,7 +1,7 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react';
+import { graphql, StaticQuery } from 'gatsby';
 
-import MenuItem from "./MenuItem"
+import MenuItem from './MenuItem';
 import s from './Menu.module.scss';
 
 /**
@@ -28,7 +28,7 @@ const MENU_QUERY = graphql`
             }
         }
     }
-`
+`;
 
 const Menu = () => {
   return (
@@ -36,8 +36,8 @@ const Menu = () => {
       query={MENU_QUERY}
       render={(data) => {
         if (data.wpgraphql.menuItems) {
-          const menuItems = data.wpgraphql.menuItems.nodes
-          const wordPressUrl = data.wpgraphql.generalSettings.url
+          const menuItems = data.wpgraphql.menuItems.nodes;
+          const wordPressUrl = data.wpgraphql.generalSettings.url;
 
           return (
             <nav className={s.navigation} id={'menu-navigation'}>
@@ -48,12 +48,12 @@ const Menu = () => {
                 ))
               }
             </nav>
-          )
+          );
         }
-        return null
+        return null;
       }}
     />
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

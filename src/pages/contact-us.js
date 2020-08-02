@@ -1,48 +1,57 @@
-import React, { Component } from "react"
-import Layout from "../components/common/Layout"
-import SEO from "../components/SEO/SEO"
-import s from "./contact.module.scss"
+import React, { Component } from 'react';
+import Layout from '../components/common/Layout';
+import SEO from '../components/SEO/SEO';
+import s from './contact.module.scss';
+import Globals from '../../globals';
 
 const encode = (data) => {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
-}
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};
 
 class Contact extends Component {
 
   constructor(props) {
-    super(props)
-    this.state = { name: "", email: "", message: "" }
+    super(props);
+    this.state = { name: '', email: '', message: '' };
   }
 
-  handleChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = (e) => {
-    e.preventDefault()
-    if (!!this.state["bot-field"]) {
-      alert("Humans do not spam !!")
-      return
+    e.preventDefault();
+    if (!!this.state['bot-field']) {
+      alert('Humans do not spam !!');
+      return;
     }
 
     if (this.state.name && this.state.email && this.state.message) {
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...this.state }),
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', ...this.state }),
       })
         .then(() => {
-          alert("Your form has been submitted sucessfully! \n We will get in touch with you shortly")
-          this.setState({ name: "", email: "", message: "" })
+          alert('Your form has been submitted sucessfully! \n We will get in touch with you shortly');
+          this.setState({ name: '', email: '', message: '' });
         })
-        .catch(error => alert(error))
+        .catch(error => alert(error));
     }
-  }
+  };
+
 
   render() {
+    const pageURL = `${Globals.siteURI}/contact-us`;
+    const seo = {
+      canonical: pageURL,
+      opengraphUrl: pageURL,
+      opengraphType: `website`,
+      title: `Contact Us - Career Select`
+    };
     return (
       <Layout>
-        <SEO title="Contact Us"/>
+        <SEO seo={seo}/>
         <div className={s.contact}>
           <form name="contact"
                 method="POST"
@@ -52,7 +61,7 @@ class Contact extends Component {
                 onSubmit={this.handleSubmit}
           >
             <ul>
-              <li style={{ display: "none" }}>
+              <li style={{ display: 'none' }}>
                 <label>Don’t fill this out if you're human:</label>
                 <input aria-label="bot-field" name="bot-field" onChange={this.handleChange}/>
               </li>
@@ -77,8 +86,8 @@ class Contact extends Component {
           </form>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
-export default Contact
+export default Contact;

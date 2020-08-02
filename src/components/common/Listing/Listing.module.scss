@@ -21,6 +21,7 @@
 
   .desc {
     font-size: 1.6rem;
+
     p:first-child {
       height: 200px;
       overflow: hidden;
@@ -44,7 +45,7 @@
     }
   }
 
-  @include respond(phone){
+  @include respond(phone) {
     width: 100%;
     margin: 8px 0;
   }

@@ -12,6 +12,35 @@ const PageTemplateFragment = `
             altText
         }
     }
-`
+`;
 
-module.exports.PageTemplateFragment = PageTemplateFragment
+const SEOTemplateFragment = `
+fragment SEOTemplateFragment on WPGraphQL_Page {
+    seo {
+          canonical
+          focuskw
+          metaDesc
+          metaKeywords
+          metaRobotsNofollow
+          metaRobotsNoindex
+          opengraphModifiedTime
+          opengraphPublishedTime
+          title
+          twitterDescription
+          twitterTitle
+          opengraphAuthor
+          opengraphDescription
+          opengraphPublisher
+          opengraphSiteName
+          opengraphTitle
+          opengraphType
+          opengraphUrl
+          twitterImage {
+            altText
+            link
+          }
+     }
+}`
+
+module.exports.PageTemplateFragment = PageTemplateFragment;
+module.exports.SEOTemplateFragment = SEOTemplateFragment;

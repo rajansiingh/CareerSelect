@@ -1,7 +1,8 @@
 @import '../../styles';
+
 *,
 *::before,
-*::after{
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
@@ -12,30 +13,32 @@ html {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
   text-rendering: optimizelegibility;
-  @include fontStyle(62.5%);  // 10px / 16px By default browser font-size ---> 1rem = 10px;
+  @include fontStyle(62.5%); // 10px / 16px By default browser font-size ---> 1rem = 10px;
 }
-body{
+
+body {
   font-family: $font-primary;
   background: #f7f7f7;
   @include fontStyle(1.6rem, false, 480);
   line-height: 2.2em;
 }
-a{
+
+a {
   text-decoration: none;
   color: $primary-color;
 }
 
-:global{
-  .responsive{
-    img
-    {
+:global {
+  .responsive {
+    img {
       width: 100%;
       height: auto;
     }
+
     .video-container {
       overflow: hidden;
       position: relative;
-      width:100%;
+      width: 100%;
     }
 
     .video-container::after {
@@ -52,17 +55,20 @@ a{
       height: 100%;
     }
   }
+
   .active {
     flex-direction: column;
     display: flex;
     align-items: center;
   }
+
   ::selection {
     color: $primary-color;
     background-color: $white;
   }
 }
-.siteContainer{
+
+.siteContainer {
   position: relative;
   height: 100vh;
 
@@ -70,26 +76,27 @@ a{
     min-height: calc(100vh - 46px);
     margin-top: 13rem;
 
-    @include respond(phone){
+    @include respond(phone) {
       margin-top: 7rem;
     }
 
-    main:before{
+    main:before {
       @include position(absolute, 0, false, false, 0);
       @include dimensions(100%, 100%);
     }
-    main{
+
+    main {
       @include position(relative);
       @include dimensions(120rem, false, 100%);
 
-      margin:0 auto;
-      padding:1.2rem 0;
+      margin: 0 auto;
+      padding: 1.2rem 0;
 
 
-      @include respond(tab-land){
+      @include respond(tab-land) {
         @include dimensions(85%);
       }
-      @include respond(phone){
+      @include respond(phone) {
         @include dimensions(50rem);
       }
     }

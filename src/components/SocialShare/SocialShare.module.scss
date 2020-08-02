@@ -6,8 +6,9 @@
   background: $grey-shade;
   position: sticky;
   top: 11.8rem;
+  z-index: 3;
 
-  @include respond(phone){
+  @include respond(phone) {
     top: 6.4rem;
     overflow-x: scroll;
   }
@@ -17,7 +18,8 @@
     display: inline-block;
     text-align: center;
     transition: all .2s;
-    &:not(:last-child){
+
+    &:not(:last-child) {
       margin-right: 10px;
     }
   }

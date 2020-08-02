@@ -7,7 +7,7 @@
 .navigation {
   background: $black;
 
-  @include respond(phone){
+  @include respond(phone) {
     display: none;
   }
 

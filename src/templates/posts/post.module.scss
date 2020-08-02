@@ -4,35 +4,35 @@
  */
 @import "../../styles";
 
-.postContainer{
+.postContainer {
 
-  .postDetails{
+  .postDetails {
     @include fontStyle(1.6rem, $black);
     padding: 1rem;
 
-    .categoryDetails{
-      a{
+    .categoryDetails {
+      a {
         padding: 0.5rem;
       }
     }
 
-    h1{
+    h1 {
       @include fontStyle(3rem);
-      padding:0.5rem 0;
+      padding: 0.5rem 0;
     }
 
-    .authorDetails{
+    .authorDetails {
       display: flex;
       justify-content: space-between;
       color: $primary-color;
 
-      a{
+      a {
         background: transparent;
       }
     }
   }
 
-  .contentContainer{
+  .contentContainer {
     padding: 2rem;
   }
 }

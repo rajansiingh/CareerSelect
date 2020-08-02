@@ -5,12 +5,32 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { graphql, useStaticQuery } from 'gatsby';
+import careerselect from '../../images/careerselect.jpg';
 
-function SEO({ description, lang, meta, title }) {
+function SEO(props) {
+  const {
+    seo: {
+      canonical,
+      metaDesc,
+      opengraphDescription,
+      opengraphModifiedTime,
+      opengraphPublishedTime,
+      opengraphPublisher,
+      opengraphTitle,
+      opengraphType,
+      opengraphUrl,
+      title,
+      twitterDescription,
+      twitterImage,
+      twitterTitle,
+    } = {},
+    lang,
+  } = props;
+  const twitterImageUrl = twitterImage && twitterImage.link;
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -22,67 +42,105 @@ function SEO({ description, lang, meta, title }) {
           }
         }
       }
-    `
-  )
-
-  const metaDescription = description || site.siteMetadata.description
-
+    `,
+  );
+  const meta = [
+    {
+      name: `og:locale`,
+      content: lang,
+    },
+    {
+      property: `og:type`,
+      content: opengraphType || `website`,
+    },
+    {
+      property: `og:title`,
+      content: opengraphTitle || title,
+    },
+    {
+      property: `og:description`,
+      content: opengraphDescription || metaDesc,
+    },
+    {
+      property: `og:url`,
+      content: opengraphUrl || canonical,
+    },
+    {
+      property: `og:site_name`,
+      content: site.siteMetadata.title || `Career Select`,
+    },
+    {
+      property: `article:publisher`,
+      content: opengraphPublisher || `https://fb.me/selectcareer.path`,
+    },
+    {
+      property: `article:published_time`,
+      content: opengraphPublishedTime,
+    },
+    {
+      property: `article:modified_time`,
+      content: opengraphModifiedTime,
+    },
+    {
+      property: `og:image`,
+      content: careerselect,
+    },
+    {
+      property: `fb:app_id`,
+      content: `975977769539620`,
+    },
+    {
+      name: `description`,
+      content: metaDesc,
+    },
+    {
+      name: `twitter:card`,
+      content: `summary_large_image`,
+    },
+    {
+      name: `twitter:creator`,
+      content: site.siteMetadata.author,
+    },
+    {
+      name: `twitter:title`,
+      content: twitterTitle || title,
+    },
+    {
+      name: `twitter:description`,
+      content: twitterDescription || metaDesc,
+    },
+    {
+      name: `twitter:creator`,
+      content: `@rajan_siingh`,
+    },
+    {
+      name: `twitter:site`,
+      content: `@rajan_siingh`,
+    },
+    {
+      name: `twitter:image`,
+      content: twitterImageUrl || careerselect,
+    },
+  ];
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
-  )
+      meta={meta}
+    >
+      <link rel="canonical" href={canonical}/>
+    </Helmet>
+  );
 }
 
 SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
+  lang: `en_US`,
+};
 
 SEO.propTypes = {
-  description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-}
+};
 
-export default SEO
+export default SEO;

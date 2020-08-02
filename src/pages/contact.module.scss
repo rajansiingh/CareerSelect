@@ -3,21 +3,26 @@
  * Created On : 25/07/20
  */
 @import "../styles";
-.contact{
+
+.contact {
   padding: 4rem 4rem;
   @include fontStyle(2rem, false, 400);
+
   li {
     list-style: none;
     margin-bottom: 15px;
+
     label {
       width: 15%;
       display: inline-block;
       vertical-align: top;
     }
+
     input {
       height: 42px;
       width: 300px;
     }
+
     textarea {
       width: 300px;
       height: 150px;

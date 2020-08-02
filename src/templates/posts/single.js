@@ -1,45 +1,36 @@
-import React from "react"
-import cx from "classnames"
-import Layout from "../../components/common/Layout"
+import React from 'react';
+import cx from 'classnames';
+import Layout from '../../components/common/Layout';
 // import Layout from '../../components/Layout'
 // import PostEntryMeta from '../../components/PostEntryMeta'
 // import PostEntryTitle from '../../components/PostEntryTitle'
 // import PostEntryMedia from '../../components/PostEntryMedia'
 // import BelowPost from '../../components/BelowPost'
-import SEO from "../../components/SEO/SEO"
-import UniversalLink from "../../components/Link/UniversalLink"
-import Globals from "../../../globals"
-import * as dayjs from "dayjs"
-import SocialShare from "../../components/SocialShare/SocialShare"
-import s from "./post.module.scss"
+import SEO from '../../components/SEO/SEO';
+import UniversalLink from '../../components/Link/UniversalLink';
+import Globals from '../../../globals';
+import * as dayjs from 'dayjs';
+import SocialShare from '../../components/SocialShare/SocialShare';
+import s from './post.module.scss';
 
-// const syntaxHighlighter = content => {
-//   if (!content) {
-//     return {
-//       __html: '',
-//     }
-//   }
-//
-//   var regex = /\[javascript\]|\[php\]|\[html\]|\[css\]/g
-//
-//   var regex2 = /\[\/javascript\]|\[\/php\]|\[\/html\]|\[\/css\]/gi
-//
-//   return {
-//     __html: content.replace(regex, '<code>').replace(regex2, '</code>'),
-//   }
-// }
 
 const Post = ({ pageContext: post }) => {
-  const displayDate = dayjs(post.date).format("MMM D, YYYY h:mm A")
+  const { seo = {}, date = new Date() } = post;
+  const displayDate = dayjs(date).format('MMM D, YYYY h:mm A');
+  const blogURL = `${Globals.siteURI}${Globals.blogURI}${post.uri}`;
+  seo.canonical = blogURL;
+  seo.opengraphUrl = blogURL;
+  seo.opengraphType = 'article';
   return (
     <Layout>
-      <SEO title={`${post.title}`}/>
+      <SEO seo={seo}/>
       <article className={s.postContainer}>
         <div className={s.postDetails}>
           <div className={s.categoryDetails}>
             {
               post.categories.nodes.map((node) => {
-                return (<UniversalLink to={`${Globals.categoryURI}/${node.slug}`}>{node.name}</UniversalLink>)
+                return (
+                  <UniversalLink key={node.id} to={`${Globals.categoryURI}/${node.slug}`}>{node.name}</UniversalLink>);
               })
             }
           </div>
@@ -51,8 +42,8 @@ const Post = ({ pageContext: post }) => {
             {displayDate}
           </div>
         </div>
-        <SocialShare urlToShare={`${Globals.siteURI}${Globals.blogURI}${post.uri}`}/>
-        <div className={cx(s.contentContainer, "responsive")} dangerouslySetInnerHTML={{ __html: post.content }}/>
+        <SocialShare urlToShare={blogURL}/>
+        <div className={cx(s.contentContainer, 'responsive')} dangerouslySetInnerHTML={{ __html: post.content }}/>
         {/*<PostEntryTitle*/}
         {/*  location="single"*/}
         {/*  post={post}*/}
@@ -67,7 +58,7 @@ const Post = ({ pageContext: post }) => {
         {/*<BelowPost post={post} />*/}
       </article>
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;

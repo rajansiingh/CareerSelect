@@ -4,31 +4,45 @@
  */
 
 @mixin fontStyle($size: false, $color: false, $weight: false, $lh: false, $style: false, $textDecoration: false) {
-  @if $size { font-size: $size; }
+  @if $size {
+    font-size: $size;
+  }
 
-  @if $color { color: $color; }
+  @if $color {
+    color: $color;
+  }
 
-  @if $weight { font-weight: $weight; }
+  @if $weight {
+    font-weight: $weight;
+  }
 
-  @if $lh { line-height: $lh; }
+  @if $lh {
+    line-height: $lh;
+  }
 
-  @if $style { font-style: $style; }
+  @if $style {
+    font-style: $style;
+  }
 
-  @if $textDecoration { text-decoration: $textDecoration; }
+  @if $textDecoration {
+    text-decoration: $textDecoration;
+  }
 }
 
 // mixin to add ellipsis
-@mixin ellipsis ($maxWidth: false) {
+@mixin ellipsis($maxWidth: false) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  @if $maxWidth { max-width: $maxWidth; }
+  @if $maxWidth {
+    max-width: $maxWidth;
+  }
 }
 
 // Mixin for multiline ellipsis support on web
 // this will provide support only for -webkit- browser for till date
-@mixin ellipsisMulti ($maxLine, $maxHeight: false) {
+@mixin ellipsisMulti($maxLine, $maxHeight: false) {
   display: -webkit-box;
   -webkit-line-clamp: $maxLine;
   -webkit-box-orient: vertical;
@@ -44,59 +58,100 @@
 @mixin position($position, $top: false, $right: false, $bottom: false, $left: false, $zIndex: false) {
   position: $position;
 
-  @if $top { top: $top; }
+  @if $top {
+    top: $top;
+  }
 
-  @if $right { right: $right; }
+  @if $right {
+    right: $right;
+  }
 
-  @if $bottom { bottom: $bottom; }
+  @if $bottom {
+    bottom: $bottom;
+  }
 
-  @if $left { left: $left; }
+  @if $left {
+    left: $left;
+  }
 
-  @if $zIndex { z-index: $zIndex; }
+  @if $zIndex {
+    z-index: $zIndex;
+  }
 }
 
 // mixin for width, height, max-width & max-height
 @mixin dimensions($width: false, $height: false, $maxWidth: false, $maxHeight: false) {
-  @if $width { width: $width; }
+  @if $width {
+    width: $width;
+  }
 
-  @if $height { height: $height; }
+  @if $height {
+    height: $height;
+  }
 
-  @if $maxWidth { max-width: $maxWidth; }
+  @if $maxWidth {
+    max-width: $maxWidth;
+  }
 
-  @if $maxHeight { max-height: $maxHeight; }
+  @if $maxHeight {
+    max-height: $maxHeight;
+  }
 }
 
 // mixin for flex on Items with all property
 @mixin flexItem($flex: false, $order: false, $alignSelf: false, $flexGrow: false, $flexShrink: false, $flexBasis: false) {
-  @if $flex { flex: $flex; }
+  @if $flex {
+    flex: $flex;
+  }
 
-  @if $order { order: $order; }
+  @if $order {
+    order: $order;
+  }
 
-  @if $alignSelf { align-self: $alignSelf; }
+  @if $alignSelf {
+    align-self: $alignSelf;
+  }
 
-  @if $flexGrow { flex-grow: $flexGrow; }
+  @if $flexGrow {
+    flex-grow: $flexGrow;
+  }
 
-  @if $flexShrink { flex-shrink: $flexShrink; }
+  @if $flexShrink {
+    flex-shrink: $flexShrink;
+  }
 
-  @if $flexBasis { flex-basis: $flexBasis; }
+  @if $flexBasis {
+    flex-basis: $flexBasis;
+  }
 }
 
 
 // mixin for display flex Containers with all property
 @mixin flexContainer($display: false, $item: false, $content: false, $flexWrap: false, $flexDirection: false, $alignContent: false) {
-  @if $display { display: $display; }
+  @if $display {
+    display: $display;
+  }
 
-  @if $item { align-items: $item; }
+  @if $item {
+    align-items: $item;
+  }
 
-  @if $content { justify-content: $content; }
+  @if $content {
+    justify-content: $content;
+  }
 
-  @if $flexWrap { flex-wrap: $flexWrap; }
+  @if $flexWrap {
+    flex-wrap: $flexWrap;
+  }
 
-  @if $flexDirection { flex-direction: $flexDirection; }
+  @if $flexDirection {
+    flex-direction: $flexDirection;
+  }
 
-  @if $alignContent { align-content: $alignContent; }
+  @if $alignContent {
+    align-content: $alignContent;
+  }
 }
-
 
 
 /**
@@ -110,15 +165,23 @@ big-desktop >= 1200px
 // mixin for media queries
 @mixin respond($breakpoint) {
   @if $breakpoint == phone {
-    @media only screen and (max-width: 37.5em) { @content };
+    @media only screen and (max-width: 37.5em) {
+      @content
+    };
   }
   @if $breakpoint == tab-port {
-    @media only screen and (max-width: 56.25em) { @content };
+    @media only screen and (max-width: 56.25em) {
+      @content
+    };
   }
   @if $breakpoint == tab-land {
-    @media only screen and (max-width: 75em) { @content };
+    @media only screen and (max-width: 75em) {
+      @content
+    };
   }
   @if $breakpoint == big-desktop {
-    @media only screen and (min-width: 75em) { @content };
+    @media only screen and (min-width: 75em) {
+      @content
+    };
   }
 }

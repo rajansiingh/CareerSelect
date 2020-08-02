@@ -16,6 +16,7 @@ module.exports = async ({ actions, graphql },options) => {
             id
             tagId
             slug
+            name
             posts {
               nodes {
                 ...BlogPreviewFragment

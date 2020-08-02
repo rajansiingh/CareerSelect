@@ -2,32 +2,32 @@
  * Author : rajansingh
  * Created On : 27/07/20
  */
-import React from "react"
-import PropTypes from "prop-types"
-import cx from "classnames"
-import s from "./Button.module.scss"
+import React from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
+import s from './Button.module.scss';
 
 const Button = (props) => {
-  const { children, onClick, id = Math.random(), type, styleClass, containerClass } = props
+  const { children, onClick, id = Math.random(), type, styleClass, containerClass } = props;
   const onBtnClick = () => {
-    if (type === "hamburger") {
-      document.getElementById(id).classList.toggle(s.active)
+    if (type === 'hamburger') {
+      document.getElementById(id).classList.toggle(s.active);
     }
-    onClick()
-  }
+    onClick();
+  };
 
   return (
-    <div className={cx({[containerClass]: containerClass})}>
+    <div className={cx({ [containerClass]: containerClass })}>
       <button
-        className={cx({ [s.hamburger]: type === "hamburger", [styleClass]: styleClass })}
+        className={cx({ [s.hamburger]: type === 'hamburger', [styleClass]: styleClass })}
         onClick={onBtnClick}
         id={id}
       >
         {children}
       </button>
     </div>
-  )
-}
+  );
+};
 
 Button.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -35,6 +35,6 @@ Button.propTypes = {
   type: PropTypes.string,
   styleClass: PropTypes.string,
   onClick: PropTypes.func,
-}
+};
 
-export default Button
+export default Button;

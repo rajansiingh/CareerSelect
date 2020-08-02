@@ -1,34 +1,34 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  FacebookShareButton,
-  FacebookMessengerShareButton,
-  FacebookMessengerIcon,
-  LinkedinShareButton,
-  TwitterShareButton,
-  PinterestShareButton,
-  TelegramShareButton,
-  WhatsappShareButton,
-  RedditShareButton,
-  TumblrShareButton,
   FacebookIcon,
-  TwitterIcon,
+  FacebookMessengerIcon,
+  FacebookMessengerShareButton,
+  FacebookShareButton,
   LinkedinIcon,
+  LinkedinShareButton,
   PinterestIcon,
-  TelegramIcon,
-  WhatsappIcon,
+  PinterestShareButton,
   RedditIcon,
+  RedditShareButton,
+  TelegramIcon,
+  TelegramShareButton,
   TumblrIcon,
-} from "react-share"
-import cx from "classnames"
-import s from "./SocialShare.module.scss"
-import exampleImage from "../../images/careerselect.jpg"
-import Globals from "../../../globals"
+  TumblrShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from 'react-share';
+import cx from 'classnames';
+import s from './SocialShare.module.scss';
+import exampleImage from '../../images/careerselect.jpg';
+import Globals from '../../../globals';
 
 
 const SocialShare = ({ urlToShare }) => {
-  let title = "Career Select"
-  let shareUrl = urlToShare
+  let title = 'Career Select';
+  let shareUrl = urlToShare;
   return (
     <div className={s.container}>
       <div className={s.socialNetwork}>
@@ -119,15 +119,15 @@ const SocialShare = ({ urlToShare }) => {
           <TumblrIcon size={32} round/>
         </TumblrShareButton>
       </div>
-    </div>)
-}
+    </div>);
+};
 
 SocialShare.propTypes = {
   urlToShare: PropTypes.string,
-}
+};
 
 SocialShare.defaultProps = {
   urlToShare: Globals.siteURI,
-}
+};
 
-export default SocialShare
+export default SocialShare;
