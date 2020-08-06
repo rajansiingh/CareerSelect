@@ -5,7 +5,7 @@
 @import "../../../styles";
 
 .header {
-  @include position(fixed, 0, false, false, false, 1);
+  @include position(fixed, 0, false, false, false, 2);
   @include dimensions(100vw);
   background: $white;
 

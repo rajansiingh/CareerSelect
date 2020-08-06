@@ -5,6 +5,8 @@
 @import "../../styles";
 
 .postContainer {
+  margin: inherit;
+  padding: inherit;
 
   .postDetails {
     @include fontStyle(1.6rem, $black);
