@@ -12,6 +12,8 @@ import Globals from '../../../globals';
 import * as dayjs from 'dayjs';
 import SocialShare from '../../components/SocialShare/SocialShare';
 import s from './post.module.scss';
+import { CommentCount, DiscussionEmbed } from 'disqus-react';
+import { Link } from 'gatsby';
 
 
 const Post = ({ pageContext: post }) => {
@@ -21,6 +23,10 @@ const Post = ({ pageContext: post }) => {
   seo.canonical = blogURL;
   seo.opengraphUrl = blogURL;
   seo.opengraphType = 'article';
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: post.id, title: post.title },
+  };
   return (
     <Layout>
       <SEO seo={seo}/>
@@ -40,10 +46,16 @@ const Post = ({ pageContext: post }) => {
           <div className={s.authorDetails}>
             <UniversalLink to={`${Globals.authorURI}/${post.author.slug}`}>By {post.author.name}</UniversalLink>
             {displayDate}
+            <Link to={`${Globals.blogURI}${post.uri}#disqus_thread`}>
+              <CommentCount {...disqusConfig} />
+            </Link>
           </div>
         </div>
         <SocialShare urlToShare={blogURL}/>
         <div className={cx(s.contentContainer, 'responsive')} dangerouslySetInnerHTML={{ __html: post.content }}/>
+        <Link name={`${Globals.blogURI}${post.uri}disqus_thread`}>
+          <DiscussionEmbed {...disqusConfig} />
+        </Link>
         {/*<PostEntryTitle*/}
         {/*  location="single"*/}
         {/*  post={post}*/}
